@@ -143,5 +143,7 @@ def response(user_response):
 **Future Improvements**
 =======================================
 -Expand the corpus to include a wider range of topics.
+
 -Implement machine learning techniques for improved responses.
+
 -Add a web interface using Flask or Streamlit
