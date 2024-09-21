@@ -89,38 +89,59 @@ import string
 
 # Load and preprocess the text
 f = open('chatboat.txt', 'r', errors='ignore')
+
 raw_doc = f.read().lower()
+
 sent_tokens = nltk.sent_tokenize(raw_doc)
+
 word_tokens = nltk.word_tokenize(raw_doc)
 
 
 # Function for greetings
 def greet(sentence):
+
     GREET_INPUTS = ("hello", "hi", "greetings", "sup", "what's up", "hey")
+    
     GREET_RESPONSES = ["hi", "hey", "*nods*", "hello", "I'm glad you're talking to me!"]
+    
     for word in sentence.split():
+    
         if word.lower() in GREET_INPUTS:
+        
             return random.choice(GREET_RESPONSES)
 
 
 # Function for generating response
 def response(user_response):
+
     robo_response = ''
+    
     TfidfVec = TfidfVectorizer(tokenizer=LemNormalize, stop_words='english')
+    
     tfidf = TfidfVec.fit_transform(sent_tokens)
+    
     vals = cosine_similarity(tfidf[-1], tfidf)
+    
     idx = vals.argsort()[0][-2]
+    
     flat = vals.flatten()
+    
     flat.sort()
+    
     req_tfidf = flat[-2]
+    
     if req_tfidf == 0:
+    
         robo_response += "I'm sorry, I don't understand."
+        
     else:
+    
         robo_response += sent_tokens[idx]
+        
     return robo_response
 
 **Future Improvements**
 =======================================
-Expand the corpus to include a wider range of topics.
-Implement machine learning techniques for improved responses.
-Add a web interface using Flask or Streamlit
+-Expand the corpus to include a wider range of topics.
+-Implement machine learning techniques for improved responses.
+-Add a web interface using Flask or Streamlit
