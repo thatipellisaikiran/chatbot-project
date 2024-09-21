@@ -53,8 +53,11 @@ pip install scikit-learn
 Before running the chatbot, download necessary NLTK corpora:
 ----------------------------------------------------------------
 import nltk
+
 nltk.download('punkt')
+
 nltk.download('wordnet')
+
 nltk.download('omw-1.4')
 
 **Step 4: Create the Input Text File**
@@ -75,9 +78,13 @@ The chatbot will start interacting with you. To exit, type "bye" or "thanks".
 Here is a basic structure of the chatbot:
 ----------------------------------------------
 import nltk
+
 from sklearn.feature_extraction.text import TfidfVectorizer
+
 from sklearn.metrics.pairwise import cosine_similarity
+
 import random
+
 import string
 
 # Load and preprocess the text
